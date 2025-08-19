@@ -1,0 +1,124 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 35,
+  "spacing": 4,
+  "margin-top": 5,
+  "margin-bottom": 10,
+
+  // Orden de módulos (Hyprland)
+  "modules-center": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "custom/media",
+    "idle_inhibitor",
+    "custom/updater",
+    "pulseaudio",
+    "network",
+    "cpu",
+    "memory",
+    "temperature",
+    "backlight",
+    "hyprland/language",
+    "battery",
+    "tray",
+    "clock",
+    "custom/power"
+  ],
+
+  // --- Hyprland ---
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "format": "{name}"
+  },
+  "hyprland/language": {
+    "format": "{}"
+  },
+
+  // --- System ---
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": { "activated": "", "deactivated": "" }
+  },
+  "tray": { "icon-size": 20, "spacing": 10 },
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}"
+  },
+  "cpu": { "format": "{usage}% ", "tooltip": false },
+  "memory": { "format": "{}% " },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": ["", "", ""]
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""]
+  },
+  "battery": {
+    // Si tu batería no es BAT0, ajustá con "bat": "BAT1"
+    "states": { "warning": 30, "critical": 15 },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "Connected  ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "on-click-right": "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu"
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": "{icon} {format_source}",
+    "format-muted": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  // --- Custom ---
+  "custom/media": {
+    // Evita el error "media stopped unexpectedly"
+    "exec": "playerctl metadata --format '{{ artist }} - {{ title }}' || echo ''",
+    "interval": 5,
+    "format": " {}",
+    "escape": true,
+    "on-click": "playerctl play-pause"
+  },
+  "custom/launcher": {
+    "format": " ",
+    "on-click": "rofi -show drun -theme ~/.config/rofi/sway/sway_config.rasi",
+    "on-click-right": "killall rofi"
+  },
+  "custom/power": {
+    "format": " ",
+    "on-click": "bash ~/.config/rofi/leave/powermenu.sh",
+    "on-click-right": "killall rofi"
+  },
+  "custom/updater": {
+    "format": "  {} Updates",
+    "exec": "yay -Qu | wc -l",
+    "exec-if": "[[ $(yay -Qu | wc -l) != 0 ]]",
+    "interval": 15,
+    "on-click": "alacritty -e yay -Syu"
+  }
+}

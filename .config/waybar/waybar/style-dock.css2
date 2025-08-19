@@ -1,0 +1,42 @@
+/* Estilo general del dock */
+#waybar {
+background-color: transparent;
+border-radius: 16px;
+padding: 5px;
+font-family: "JetBrainsMono Nerd Font", monospace;
+font-size: 16px;
+color: #ffffff;
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+transition: all 0.3s ease-in-out;
+}
+
+/* Estilo de íconos (terminal, navegador, etc.) */
+#custom-terminal,
+#custom-browser,
+#custom-filemanager {
+padding: 0 14px;
+font-size: 22px;
+color: #ffffff;
+border-radius: 12px;
+background-color: rgba(255, 255, 255, 0.05);
+margin: 0 6px;
+}
+
+/* Efecto al pasar el mouse */
+#custom-terminal:hover,
+#custom-browser:hover,
+#custom-filemanager:hover {
+background-color: rgba(255, 255, 255, 0.15);
+color: #ffffff;
+box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Tooltip */
+tooltip {
+    background-color: rgba(30, 30, 30, 0.95);
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+}

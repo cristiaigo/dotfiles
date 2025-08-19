@@ -1,0 +1,64 @@
+/* ---- ESTILO DE LA BARRA DOCK ---- */
+#waybar {
+background: transparent;
+border: none;
+box-shadow: none;
+}
+
+/* ---- ESTILO DE LOS ICONOS DEL DOCK ---- */
+#custom-terminal,
+#custom-browser,
+#custom-filemanager {
+min-height: 25px;
+min-width: 25px;
+margin: 8px 15px;
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+opacity: 0.7;
+border-radius: 12px;
+box-shadow: inset 0px 1px 3px @color8;
+transition: all 0.25s ease-out;
+}
+
+#custom-terminal:hover,
+#custom-browser:hover,
+#custom-filemanager:hover {
+opacity: 1.0;
+box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.6);
+background-size: 110%;
+}
+
+#custom-terminal:active,
+#custom-browser:active,
+#custom-filemanager:active {
+opacity: 1.0;
+box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.9);
+background-size: 100%;
+transition-duration: 0.1s;
+}
+
+/* ---- ÍCONOS PERSONALIZADOS ---- */
+#custom-terminal {
+background-image: url("/home/cristian/Icons/kitty.png");
+}
+#custom-browser {
+background-image: url("/home/cristian/Icons/firefox.png");
+}
+#custom-filemanager {
+background-image: url("/home/cristian/Icons/dolphin.png");
+}
+
+/* ---- TOOLTIP ---- */
+tooltip {
+    background-color: @color0;
+    color: @foreground;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 1px solid @color6;
+}
+
+tooltip label {
+    color: @foreground;
+}

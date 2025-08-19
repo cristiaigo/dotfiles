@@ -1,0 +1,39 @@
+/* --- PLANTILLA DE ESTILOS PARA LA BARRA SUPERIOR DINÁMICA --- */
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: JetBrainsMono Nerd Font, monospace;
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+#window, #clock, #battery, #pulseaudio, #network, #cpu, #memory, #workspaces, #tray, #backlight {
+background: transparent;
+padding: 0px 10px;
+margin: 3px 0px;
+margin-top: 5px;
+color: {foreground};
+}
+
+#workspaces button {
+padding: 5px;
+color: {color8};
+}
+
+#workspaces button.focused {
+color: {foreground};
+background: {color2};
+border-radius: 10px;
+}
+
+#workspaces button:hover {
+background: {color1};
+color: {background};
+border-radius: 10px;
+}

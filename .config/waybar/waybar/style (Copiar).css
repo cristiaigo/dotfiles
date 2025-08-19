@@ -1,0 +1,95 @@
+@import url("file:///home/cristian/.cache/wal/colors-waybar.css");
+
+* {
+    border: none;
+    border-radius: 12px;
+    font-family: JetBrainsMono Nerd Font, monospace;
+    font-weight: 500;
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(10, 10, 15, 0.4); /* Fondo semitransparente más suave */
+    color: @color7;
+    margin: 6px 12px;
+    border-radius: 18px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* efecto 3D sutil */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Módulos */
+#workspaces,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#backlight,
+#tray,
+#window,
+#custom-launcher,
+#custom-wlogout {
+background: rgba(25, 25, 35, 0.3); /* semitransparente */
+color: @color7;
+padding: 6px 10px;
+margin: 4px 6px;
+border-radius: 12px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* profundidad sutil */
+}
+
+/* Workspaces */
+#workspaces {
+background: transparent;
+}
+
+#workspaces button {
+padding: 5px 10px;
+margin: 0 3px;
+border-radius: 10px;
+background: rgba(50, 50, 60, 0.2);
+color: @color5;
+transition: all 0.3s ease;
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+background: @color1;
+color: @color0;
+box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+#workspaces button:hover {
+background: @color7;
+color: @color0;
+}
+
+/* Tray */
+#tray {
+margin-right: 10px;
+}
+
+/* Window title */
+#window {
+margin-left: 40px;
+margin-right: 40px;
+color: @color6;
+font-weight: 600;
+}
+
+/* Launcher */
+#custom-launcher {
+background: @color4;
+color: @color0;
+font-weight: bold;
+border-radius: 14px;
+margin-left: 10px;
+}
+
+/* Wlogout */
+#custom-wlogout {
+background: @color1;
+color: @color6;
+font-weight: bold;
+border-radius: 14px;
+margin-right: 10px;
+}

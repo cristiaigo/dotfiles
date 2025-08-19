@@ -1,0 +1,161 @@
+@import url("file:///home/cristian/.cache/wal/colors-waybar.css");
+
+/* Estilo global para todos los elementos */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", monospace; /* Asegúrate de que esta fuente esté instalada */
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+}
+
+/* Estilo para la barra principal de Waybar (ventana) */
+window#waybar {
+    background: alpha(@color0, 0.6); /* Fondo semitransparente usando @color0 de Pywal */
+    color: @color7; /* Color de texto principal */
+    border-radius: 15px; /* Bordes redondeados para la barra completa */
+    margin: 10px 15px; /* Margen para que la barra "flote" un poco */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6); /* Sombra 3D más pronunciada */
+    transition: all 0.3s ease-in-out; /* Transiciones suaves */
+}
+
+/* Módulos generales: Semitransparentes, resaltados, redondeados con sombra */
+#workspaces,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#backlight,
+#tray,
+#window,
+#custom-launcher,
+#custom-wlogout,
+#cpu,
+#memory {
+background: alpha(@color0, 0.2); /* Fondo de módulo apenas transparente */
+color: @color7; /* Color de texto que resalte (usamos el color más claro de pywal) */
+padding: 6px 12px;
+margin: 4px 6px;
+border-radius: 12px; /* Bordes más redondeados para los módulos */
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra 3D suave para resaltar */
+transition: all 0.2s ease-in-out;
+}
+
+/* Estilos específicos para Workspaces */
+#workspaces {
+padding-left: 8px;
+padding-right: 8px;
+background: transparent; /* Transparente para no tener un bloque de fondo extra */
+border-radius: 0; /* No redondeado si es transparente */
+box-shadow: none; /* Sin sombra si es transparente */
+margin-left: 5px; /* Ajusta el margen si es necesario */
+}
+
+#workspaces button {
+padding: 5px 12px;
+margin: 0 4px;
+border-radius: 10px;
+background: transparent;
+color: @color5; /* Color por defecto de los workspaces */
+transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+background: alpha(@color1, 0.7); /* Fondo semitransparente del color de acento de Pywal */
+color: @color6; /* Color de texto del módulo */
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra sutil para el activo */
+}
+
+#workspaces button:hover {
+background: alpha(@color7, 0.2); /* Fondo semitransparente más claro al pasar el ratón */
+color: @color0; /* Color de texto al pasar el ratón */
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Tray */
+#tray {
+border-radius: 12px; /* Más redondeado */
+margin-right: 8px; /* Ajusta el margen */
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Título de ventana */
+#window {
+margin-left: 30px; /* Reducido un poco para un aspecto más compacto */
+margin-right: 30px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Botón de menú (launcher) */
+#custom-launcher {
+background: alpha(@color4, 0.7); /* Color de acento de Pywal, semitransparente */
+color: @color0; /* Color del texto/icono, resalta sobre el color de acento */
+font-weight: bold;
+border-radius: 14px;
+margin-left: 8px; /* Ajusta margen */
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Botón de logout */
+#custom-wlogout {
+background: alpha(@color1, 0.7); /* Color de acento de Pywal, semitransparente */
+color: @color6; /* Color del texto/icono */
+font-weight: bold;
+border-radius: 14px;
+margin-right: 8px; /* Ajusta margen */
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos de módulos específicos que tenías definidos */
+/* Asegúrate de que estos no sobrescriban los estilos generales de módulo si no quieres */
+#clock {
+color: @color7;
+border-radius: 12px; /* Más redondeado */
+margin-left: 5px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#network {
+color: @color7;
+border-radius: 12px; /* Más redondeado */
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#pulseaudio {
+color: @color7;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#pulseaudio.microphone {
+color: @color7;
+border-radius: 12px; /* Más redondeado */
+margin-right: 8px; /* Ajusta margen */
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#battery {
+color: @color7;
+border-radius: 12px; /* Más redondeado */
+margin-right: 8px; /* Ajusta margen */
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#cpu, #memory, #backlight { /* Agregado para que tengan el mismo estilo que los demás */
+border-radius: 12px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+margin: 4px 6px;
+padding: 6px 12px;
+background: alpha(@color0, 0.2); /* Usando alpha para transparencia */
+color: @color7;
+}
+
+/* Opcional: Para evitar que algunos módulos tengan bordes redondeados solo en un lado si están juntos */
+/* Puedes comentar o ajustar estos si prefieres que se fundan */
+#backlight, #memory {
+border-radius: 12px 0px 0px 12px;
+}
+#cpu, #battery {
+border-radius: 0px 12px 12px 0px;
+}

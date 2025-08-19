@@ -1,0 +1,115 @@
+@import url("file:///home/cristian/.cache/wal/colors-waybar.css");
+
+/* ===== BASE ===== */
+* {
+    border: none;
+    border-radius: 8px;
+    font-family: JetBrainsMono Nerd Font;
+    font-weight: 500;
+    font-size: 9px;
+    min-height: 0;
+}
+
+/* ===== BARRA PRINCIPAL CON DEGRADADO ===== */
+window#waybar {
+    background: linear-gradient(to top, rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.3));
+    color: @color7;
+    margin: 6px 10px;
+    border: none;
+}
+
+/* ===== MÓDULOS ===== */
+#workspaces,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#backlight,
+#tray,
+#window,
+#custom-launcher,
+#custom-wlogout,
+#custom-notifications {
+background: rgba(25, 25, 35, 0.75);
+color: @color7;
+padding: 6px 12px;
+margin: 4px 5px;
+border-radius: 6px;
+box-shadow:
+inset 0 0 3px rgba(255, 255, 255, 0.08),
+0 2px 5px rgba(0, 0, 0, 0.6),
+0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== WORKSPACES ===== */
+#workspaces {
+background: transparent;
+}
+
+#workspaces button {
+padding: 4px 10px;
+margin: 0 3px;
+border-radius: 6px;
+background: rgba(255, 255, 255, 0.06);
+color: @color5;
+transition: all 0.2s ease-in-out;
+box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.05);
+}
+
+/* ===== NEÓN EN WORKSPACE ACTIVO ===== */
+#workspaces button.active,
+#workspaces button.focused {
+background: @color6;
+color: @color0;
+box-shadow:
+0 0 6px @color6,
+0 0 12px @color6;
+}
+
+#workspaces button:hover {
+background: @color7;
+color: @color0;
+}
+
+/* ===== TRAY ===== */
+#tray {
+margin-right: 8px;
+}
+
+/* ===== TÍTULO DE VENTANA ===== */
+#window {
+margin-left: 20px;
+margin-right: 20px;
+color: @color6;
+font-weight: 600;
+}
+
+/* ===== LAUNCHER Y WLOGOUT CON NEÓN OPCIONAL ===== */
+#custom-launcher,
+#custom-wlogout {
+border-radius: 6px;
+padding: 4px 8px;
+margin: 3px 4px;
+font-size: 15px;
+min-width: 15px;
+min-height: 10px;
+font-family: "JetBrainsMono Nerd Font";
+box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+#custom-launcher {
+background: @color4;
+color: @color0;
+box-shadow: 0 0 6px @color4, 0 0 12px @color4;
+}
+
+#custom-wlogout {
+background: @color1;
+color: @color6;
+box-shadow: 0 0 6px @color1, 0 0 12px @color1;
+}
+
+/* ===== NOTIFICACIONES ===== */
+#custom-notifications {
+font-size: 9px;
+}

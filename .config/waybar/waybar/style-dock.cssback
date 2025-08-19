@@ -1,0 +1,92 @@
+/* ---- ESTILO DE LA BARRA PRINCIPAL ---- */
+/* Hacemos la barra completamente invisible */
+#waybar {
+background: transparent;
+border: none;
+box-shadow: none;
+}
+
+/* ---- ESTILO DE LOS ICONOS DEL DOCK ---- */
+
+/* Estilo base para cada uno de los "botones" del dock */
+#custom-terminal,
+#custom-browser,
+#custom-filemanager {
+min-height: 25px;
+min-width: 25px;
+margin: 8px 15px; /* Espaciado entre íconos */
+
+/* El tamaño inicial de la imagen es 'contain' para que quepa bien */
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+
+/* --- ÍCONOS APAGADOS Y HUNDIDOS POR DEFECTO --- */
+opacity: 0.7; /* Opacidad inicial para que se vean "apagados" */
+border-radius: 12px;
+box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra interior */
+
+/* Transición suave para todos los efectos */
+transition: all 0.25s ease-out;
+}
+
+/* ---- EFECTO AL PASAR EL RATÓN (HOVER) ---- */
+#custom-terminal:hover,
+#custom-browser:hover,
+#custom-filemanager:hover {
+/* El ícono se enciende por completo */
+opacity: 1.0;
+
+/* La sombra cambia para dar efecto de que "flota" */
+box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.6);
+
+/* --- EFECTO DE ZOOM --- */
+/* Hacemos la imagen de fondo un 10% más grande que su contenedor */
+background-size: 110%;
+}
+
+/* ---- EFECTO AL HACER CLIC (ACTIVE) ---- */
+#custom-terminal:active,
+#custom-browser:active,
+#custom-filemanager:active {
+opacity: 1.0;
+
+/* Efecto de "presionar": sombra interior más fuerte */
+box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.9);
+
+/* Al hacer clic, la imagen vuelve a su tamaño normal */
+background-size: 100%;
+
+/* Hacemos que la animación del clic sea muy rápida */
+transition-duration: 0.1s;
+}
+
+
+/* ---- ASIGNACIÓN DE CADA IMAGEN PNG ---- */
+/* ---- Recuerda que estas rutas deben ser correctas en tu sistema ---- */
+#custom-terminal {
+background-image: url("/home/cristian/Icons/kitty.png");
+}
+
+#custom-browser {
+background-image: url("/home/cristian/Icons/firefox.png");
+}
+
+#custom-filemanager {
+background-image: url("/home/cristian/Icons/dolphin.png");
+}
+
+
+/* ---- ESTILO DEL TOOLTIP (la etiqueta que aparece al pasar el ratón) ---- */
+tooltip {
+    background-color: rgba(30, 30, 30, 0.95);
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+}
+
+tooltip label {
+    color: #ffffff;
+}

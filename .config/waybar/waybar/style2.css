@@ -1,0 +1,93 @@
+@import url("file:///home/cristian/.cache/wal/colors-waybar.css");
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: JetBrainsMono Nerd Font, monospace;
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(10, 10, 15, 0.6); /* Fondo semitransparente */
+    color: @color7;
+    border-bottom: 2px solid @color1;
+}
+
+/* Módulos generales */
+#workspaces,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#backlight,
+#tray,
+#window,
+#custom-launcher,
+#custom-wlogout {
+background: @color0;
+color: @color7;
+padding: 6px 12px;
+margin: 4px 6px;
+border-radius: 10px;
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Workspaces */
+#workspaces {
+padding-left: 8px;
+padding-right: 8px;
+background: transparent;
+}
+
+#workspaces button {
+padding: 5px 10px;
+margin: 0 4px;
+border-radius: 10px;
+background: transparent;
+color: @color5;
+transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+background: @color1;
+color: @color6;
+}
+
+#workspaces button:hover {
+background: @color7;
+color: @color0;
+}
+
+/* Tray */
+#tray {
+border-radius: 10px;
+margin-right: 10px;
+}
+
+
+/* Título de ventana */
+#window {
+margin-left: 40px;
+margin-right: 40px;
+}
+
+/* Botón de menú (launcher) */
+#custom-launcher {
+background: @color4;
+color: @color0;
+font-weight: bold;
+border-radius: 14px;
+margin-left: 10px;
+}
+
+/* Botón de logout */
+#custom-wlogout {
+background: @color1;
+color: @color6;
+font-weight: bold;
+border-radius: 14px;
+margin-right: 10px;
+}

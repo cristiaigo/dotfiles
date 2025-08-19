@@ -1,0 +1,4 @@
+show_shutdown=false
+show_reboot=false
+show_suspend=false
+show_logout=false

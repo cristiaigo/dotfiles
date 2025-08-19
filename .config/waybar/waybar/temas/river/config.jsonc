@@ -1,0 +1,126 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 35,
+  "spacing": 4,
+  "margin-top": 5,
+  "margin-bottom": 5,
+
+  "modules-left": ["custom/launcher", "custom/media", "tray"],
+  "modules-center": [
+    "idle_inhibitor", "custom/updater", "custom/snip", "custom/wallpaper",
+    "pulseaudio", "cpu", "memory", "temperature", "backlight",
+    "battery", "network", "clock"
+  ],
+  "modules-right": ["hyprland/workspaces", "custom/power"],
+"hyprland/workspaces": {
+  "disable-scroll": true,
+  "all-outputs": false,
+  "format": "{name}",
+  "sort-by-number": true,
+  "persistent-workspaces": {
+    "*": [1, 2, 3, 4, 5]   // siempre muestra 1–5
+   }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": { "activated": "", "deactivated": "" }
+  },
+
+  "tray": { "icon-size": 20, "spacing": 10 },
+
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}"
+  },
+
+  "cpu": { "format": "{usage}% ", "tooltip": false },
+  "memory": { "format": "{}% " },
+
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": ["", "", ""]
+  },
+
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""]
+  },
+
+  "battery": {
+    // Si no detecta, fijá tu batería: "bat": "BAT0" o "BAT1"
+    "states": { "warning": 30, "critical": 15 },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "Connected  ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "on-click-right": "nm-connection-editor"
+  },
+
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": "{icon} {format_source}",
+    "format-muted": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "", "hands-free": "", "headset": "",
+      "phone": "", "portable": "", "car": "",
+      "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "custom/media": {
+    "exec-if": "playerctl -l 2>/dev/null | grep -q .",
+    "exec": "playerctl metadata --format '{{ artist }} - {{ title }}' 2>/dev/null || echo ''",
+    "interval": 5,
+    "format": " {}",
+    "escape": true,
+    "on-click": "playerctl play-pause"
+  },
+
+  "custom/launcher": {
+    "format": "",
+    "on-click": "wofi --show drun",
+    "on-click-right": "killall wofi"
+  },
+
+  "custom/power": {
+    "format": "  ",
+    "on-click": "nwg-bar",
+    "on-click-right": "killall nwg-bar"
+  },
+
+  "custom/updater": {
+    "format": "  {} Update(s)",
+    "exec": "checkupdates | wc -l",
+    "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
+    "interval": 15,
+    "on-click": "alacritty -e yay -Syu && notify-send 'The system has been updated'"
+  },
+
+  "custom/snip": {
+     "format": " ",
+     "on-click": "~/.config/hypr/scripts/screenshot.sh"
+   },
+
+
+  "custom/wallpaper": {
+     "format": " ",
+     "on-click": "~/.config/hypr/scripts/wallpaper-rofi.sh"
+     }
+}

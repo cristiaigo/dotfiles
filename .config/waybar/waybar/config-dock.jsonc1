@@ -1,0 +1,56 @@
+{
+    // --- Configuración general de la barra dock ---
+    "layer": "top", // Mantiene el dock por encima de las ventanas. Puedes probar "bottom" si prefieres que las ventanas lo cubran.
+    "position": "bottom", // ¡Posiciona la barra en la parte inferior!
+    "height": 45, // Ajusta la altura de tu dock según tu gusto (ej: 40, 45, 50)
+    "spacing": 30, // Espaciado entre los módulos del dock
+    "exclusive": true, // Impide que las ventanas se superpongan con el dock
+    "passthrough": false, // Permite la interacción con el dock
+    "gtk-layer-shell": true,
+
+    // --- Márgenes para centrar el dock (ajusta según el ancho de tu pantalla) ---
+    "margin-left": 300, // Ajusta este valor para mover el dock horizontalmente
+    "margin-right": 300, // Ajusta este valor para mover el dock horizontalmente
+    "margin-bottom": 10, // Margen desde el borde inferior de la pantalla
+
+    // --- Módulos en el dock (solo lanzadores) ---
+    "modules-left": [
+        "custom/terminal",
+        "custom/browser",
+        "custom/filemanager"
+        // Agrega más módulos aquí para otras aplicaciones que quieras en tu dock
+    ],
+    "modules-center": [], // Mantén esto vacío para un dock simple y centrado con los márgenes
+    "modules-right": [], // Mantén esto vacío
+
+    // --- Definiciones de módulos de lanzadores ---
+    "custom/terminal": {
+        "format": " ", // Icono de terminal (Nerd Font)
+        "tooltip": true,
+        "tooltip-format": "Terminal", // Texto del tooltip
+        "on-click": "kitty", // Lanza tu terminal, que según tu hyprland.conf es kitty
+        "class": "launcher-item" // Clase CSS para estilizar
+    },
+    "custom/browser": {
+        "format": " " , // Icono de navegador (Nerd Font para Chrome/Browser)
+        "tooltip": true,
+        "tooltip-format": "Navegador",
+        "on-click": "firefox", // Lanza tu navegador
+        "class": "launcher-item"
+    },
+    "custom/filemanager": {
+        "format": "", // Icono de carpeta (Nerd Font)
+        "tooltip": true,
+        "tooltip-format": "Explorador de Archivos",
+        "on-click": "dolphin", // Lanza tu explorador de archivos
+        "class": "launcher-item"
+    }
+    // Ejemplo para añadir otro lanzador (por ejemplo, tu editor de código)
+    // "custom/code_editor": {
+    //     "format": "󰨞", // Icono de VS Code (Nerd Font)
+    //     "tooltip": true,
+    //     "tooltip-format": "Editor de Código",
+    //     "on-click": "code", // Comando para lanzar tu editor de código
+    //     "class": "launcher-item"
+    // }
+}

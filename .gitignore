@@ -1,0 +1,30 @@
+# caches y basura
+*.log
+*.cache
+.cache/
+**/.cache/
+**/node_modules/
+**/__pycache__/
+
+# credenciales (NO versionar)
+*.key
+*.pem
+*.p12
+*.kdbx
+**/secrets.*
+**/.env
+**/env
+**/.ssh/
+**/ssh/
+
+# pywal (cache)
+**/.cache/wal/
+
+# wallpapers (ignorados por defecto)
+**/wallpapers/
+**/Wallpapers/
+**/*.heic
+**/*.jpg
+**/*.jpeg
+**/*.png
+**/*.webp

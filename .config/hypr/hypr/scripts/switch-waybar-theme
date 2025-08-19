@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+THEMES_DIR="${HOME}/.config/waybar/temas"
+SCRIPTS_DIR="${HOME}/.config/hypr/scripts"
+CURRENT_FILE="${THEMES_DIR}/.current"
+INTEGRATIONS="${THEMES_DIR}/integrations"
+APPLY_WAL=0
+APPLY_WALLUST=0
+
+usage(){ echo "Uso: $(basename "$0") [--pywal|--wallust] [tema]"; }
+
+ensure_deps(){
+  command -v waybar >/dev/null || { echo "waybar no encontrado"; exit 1; }
+}
+
+theme_icon() {
+  local t="${1,,}"
+  if [[ "$t" == *catpp* ]]; then                echo "preferences-color"
+  elif [[ "$t" == *gruv* ]]; then               echo "applications-graphics"
+  elif [[ "$t" == *mac* || "$t" == *osx* ]]; then echo "applets-screenshooter"
+  elif [[ "$t" == *vertical* || "$t" == *dock* ]]; then echo "view-list-details"
+  elif [[ "$t" == *pywal* || "$t" == *wallust* || "$t" == *dynamic* ]]; then echo "preferences-desktop-wallpaper"
+  else                                          echo "preferences-desktop-theme"
+  fi
+}
+
+pick_theme(){
+  # construye lista desde carpetas del directorio de temas
+  mapfile -t THEMES < <(find "$THEMES_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort)
+  [[ ${#THEMES[@]} -eq 0 ]] && { echo "No hay temas en $THEMES_DIR"; exit 1; }
+
+  local choice=""
+  if command -v rofi >/dev/null; then
+    # rofi con iconos
+    choice="$(
+      {
+        for t in "${THEMES[@]}"; do
+          printf "%s\0icon\x1f%s\n" "$t" "$(theme_icon "$t")"
+        done
+      } | rofi -dmenu -i -show-icons -p 'Waybar theme'
+    )"
+  elif command -v wofi >/dev/null; then
+    choice="$(printf '%s\n' "${THEMES[@]}" | wofi --dmenu -p 'Waybar theme')"
+  else
+    choice="$(printf '%s\n' "${THEMES[@]}" | dmenu -p 'Waybar theme')"
+  fi
+
+  printf '%s' "${choice}"
+}
+
+launch_theme(){
+  local theme="$1"
+  local conf="${THEMES_DIR}/${theme}/config.jsonc"
+  local css="${THEMES_DIR}/${theme}/style.css"
+  [[ -f "$conf" && -f "$css" ]] || { echo "Tema inválido: ${theme}"; exit 1; }
+  pkill -x waybar || true; sleep 0.2
+  nohup waybar -c "$conf" -s "$css" >/dev/null 2>&1 &
+  echo "$theme" > "$CURRENT_FILE"
+  notify-send "Waybar" "Tema activo: ${theme}" || true
+}
+
+main(){
+  ensure_deps
+  while [[ "${1-}" =~ ^- ]]; do
+    case "$1" in
+      --pywal) APPLY_WAL=1; shift ;;
+      --wallust) APPLY_WALLUST=1; shift ;;
+      *) break ;;
+    esac
+  done
+
+  mkdir -p "${INTEGRATIONS}"
+  if [[ "$APPLY_WAL" -eq 1 ]] && command -v wal >/dev/null; then wal -R || true; fi
+  if [[ "$APPLY_WALLUST" -eq 1 ]] && command -v wallust >/dev/null; then wallust run || true; fi
+  if command -v python3 >/dev/null; then python3 "${SCRIPTS_DIR}/integrations/gen_palette.py" "${INTEGRATIONS}/palette.css" >/dev/null 2>&1 || true; fi
+
+  local theme="${1-}"
+  if [[ -z "${theme}" ]]; then theme="$(pick_theme || true)"; fi
+  [[ -z "${theme}" ]] && { usage; exit 0; }
+  launch_theme "$theme"
+}
+main "$@"

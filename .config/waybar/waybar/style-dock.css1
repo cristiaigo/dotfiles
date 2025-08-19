@@ -1,0 +1,35 @@
+/* Estilo general para la barra dock */
+#waybar {
+background-color: rgba(24, 24, 24, 0.85); /* Fondo oscuro semitransparente */
+border-radius: 15px; /* Bordes redondeados para el dock */
+box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5); /* Sombra para darle profundidad */
+transition: all 0.3s ease-in-out; /* Transición suave para efectos */
+font-family: JetBrainsMono Nerd Font, monospace;
+}
+
+/* Estilo para cada lanzador individual dentro del dock */
+.modules-left > widget > .launcher-item {
+    padding: 0 10px; /* Espaciado horizontal interno para cada icono */
+    color: #FFFFFF; /* Color de los iconos (un tono pastel claro) */
+    font-size: 18px; /* Tamaño del icono */
+    min-width: 20px; /* Ancho mínimo para cada botón */
+    /* background-color: rgba(0, 0, 0, 0.1);  Opcional: fondo ligero para cada icono */
+    border-radius: 10px; /* Bordes redondeados para cada icono */
+    margin: 0 5px; /* Margen entre iconos */
+}
+
+/* Efecto al pasar el ratón sobre los lanzadores */
+.modules-left > widget > .launcher-item:hover {
+    background-color: rgba(138, 173, 244, 0.2); /* Fondo azul semitransparente al pasar el ratón */
+    color: #FFFFFF; /* Cambia el color del icono al pasar el ratón */
+}
+
+/* Estilo para los tooltips (aparecen al pasar el ratón) */
+tooltip {
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid rgba(138, 173, 244, 0.5);
+}

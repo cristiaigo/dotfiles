@@ -1,0 +1,200 @@
+{
+  "layer": "top",
+  "position": "top",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "height": 34,
+  "width": 1450,
+
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "custom/clock-es"
+  ],
+  "modules-center": [
+    "hyprland/window",
+    "tray",
+    "custom/notifications",
+    "group/appearance"             // ← un solo módulo con “drawer”
+  ],
+  "modules-right": [
+    "backlight",
+    "pulseaudio",
+    "pulseaudio#microphone",
+    "network",
+    "battery",
+    "custom/wlogout"
+  ],
+
+  /* ===== RELOJ ES ===== */
+  "custom/clock-es": {
+    "format": "{}",
+    "exec": "LC_TIME=es_AR.UTF-8 date '+ %A, %d de %B de %Y  %H:%M:%S'",
+    "interval": 1,
+    "return-type": "plain-text"
+  },
+
+  /* ===== LAUNCHER / WLOGOUT ===== */
+  "custom/launcher": {
+    "format": "󰣇",
+    "tooltip": false,
+    "on-click": "rofi -show drun",
+    "min-length": 2,
+    "align": 0.5
+  },
+  "custom/wlogout": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "wlogout",
+    "min-length": 2,
+    "align": 0.5
+  },
+
+  /* =========================================================
+     ==============  GRUPO: APARIENCIA (DRAWER)  =============
+     =========================================================
+     Primer módulo de la lista = “líder” (siempre visible).
+     Al pasar el mouse sobre el grupo, se revelan los demás.
+     Podés poner click-to-reveal=true si preferís por click.  */
+  "group/appearance": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 200,
+      "transition-left-to-right": true,
+      "click-to-reveal": false
+    },
+    "modules": [
+      "custom/appearance",          // líder (siempre visible)
+      "custom/wallpaper",           // oculto hasta hover
+      "custom/theme"                // oculto hasta hover
+    ]
+  },
+
+  /* Icono líder (solo muestra el “título” del grupo) */
+  "custom/appearance": {
+    "format": "   ",
+    "tooltip": "Apariencia",
+    "icon-size": 12
+  },
+
+  /* Botón: Waypaper (lanzado desacoplado para evitar cuelgues) */
+  "custom/wallpaper": {
+    "format": " 󰋫  ",
+    "tooltip": "Cambiar wallpaper",
+    "on-click": "bash -lc 'setsid -f waypaper --backend swww --folder \"$HOME/Imágenes/Wallpapers/Aesthetic\" >/dev/null 2>&1 &'",
+    "on-click-right": "bash -lc 'setsid -f waypaper --restore >/dev/null 2>&1 &'",
+    "icon-size": 12,
+    "spacing": 10
+  },
+
+  /* Botón: Cambiar tema de Waybar */
+  "custom/theme": {
+    "format": " 󰏘  ",
+    "tooltip": "Cambiar tema de Waybar",
+    "on-click": "~/.config/hypr/scripts/switch-waybar-rofi",
+    "icon-size": 12,
+    "spacing": 10
+  },
+
+  /* ===== RESTO DE MÓDULOS ===== */
+  "custom/notifications": {
+    "tooltip": false,
+    "format": "{icon} {text}",
+    "format-icons": { "notification": "", "none": "" },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+    "escape": true
+  },
+
+  "hyprland/window": { "format": "󰣇 {}" },
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "on-click": "activate",
+    "persistent-workspaces": { "*": [1, 2, 3, 4] }
+  },
+
+  "tray": { "icon-size": 10, "spacing": 10 },
+
+  "clock": {
+    "interval": 1,
+    "format": " {:%A, %d de %B de %Y  %H:%M:%S}",
+    "locale": "es_AR.UTF-8",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#a6adc8'><b>{}</b></span>",
+        "weekdays": "<span color='#a6adc8'><b>{}</b></span>",
+        "today": "<span color='#a6adc8'><b>{}</b></span>",
+        "days": "<span color='#555869'><b>{}</b></span>"
+      }
+    }
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-scroll-up": "brightnessctl set 1%+",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "min-length": 6
+  },
+
+  "battery": {
+    "states": { "good": 95, "warning": 30, "critical": 20 },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      "󰂃","󰁺","󰁻","󰁼","󰁽",
+      "󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"
+    ]
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "tooltip": false,
+    "format-muted": "  Muted",
+    "on-click": "pamixer -t",
+    "on-scroll-up": "pamixer -i 1",
+    "on-scroll-down": "pamixer -d 1",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", "", ""]
+    }
+  },
+
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "  Muted",
+    "on-click": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5
+  },
+
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": "󰈀 ",
+    "format-disconnected": "󰖪 ",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "nm-connection-editor"
+  }
+}

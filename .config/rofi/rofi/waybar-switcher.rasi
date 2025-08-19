@@ -1,0 +1,29 @@
+* {
+  font: "JetBrainsMono Nerd Font 12";
+}
+window {
+  width: 680px;
+  height: 360px;
+  border: 0;
+  padding: 14px;
+  background-color: rgba(20,22,26,0.96);
+}
+mainbox { spacing: 12px; }
+inputbar {
+  children: [prompt, entry];
+  padding: 8px 10px;
+  background-color: rgba(255,255,255,0.06);
+  border-radius: 10px;
+}
+prompt { text: "  Waybar theme  "; margin: 0 8px 0 0; }
+listview {
+  spacing: 6px;
+  scrollbar: true;
+}
+element {
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+element-icon { size: 22px; }
+element selected { background-color: rgba(59,130,246,0.22); }
+element-text { highlight: bold; }

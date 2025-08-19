@@ -1,0 +1,42 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 40,
+    "spacing": 30,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+
+    "margin-left": 300,
+    "margin-right": 300,
+    "margin-bottom": 10,
+
+    "modules-left": [],
+    "modules-center": [
+        "custom/terminal",
+        "custom/browser",
+        "custom/filemanager"
+    ],
+    "modules-right": [],
+
+    "custom/terminal": {
+        "format": " ",
+        "tooltip": true,
+        "tooltip-format": "Terminal",
+        "on-click": "kitty"
+    },
+
+    "custom/browser": {
+        "format": " ",
+        "tooltip": true,
+        "tooltip-format": "Navegador",
+        "on-click": "firefox"
+    },
+
+    "custom/filemanager": {
+        "format": " ",
+        "tooltip": true,
+        "tooltip-format": "Explorador de Archivos",
+        "on-click": "dolphin"
+    }
+}

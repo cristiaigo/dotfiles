@@ -1,0 +1,152 @@
+@import url("file:///home/cristian/.cache/wal/colors-waybar.css");
+
+/* ===== BASE ===== */
+* {
+    border: 0;
+    border-radius: 10px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: 500;
+    font-size: 9px;
+    min-height: 0;
+}
+
+/* ===== BARRA (centrada y con extremos redondeados) ===== */
+window#waybar {
+    background: linear-gradient(to top, rgba(10,10,15,0.85), rgba(10,10,15,0.30));
+    color: @color7;
+    margin: 6px 235px;
+    border-radius: 22px;
+    padding: 4px;
+    background-clip: padding-box;
+}
+
+/* ===== MÓDULOS ===== */
+#workspaces,
+#clock, #custom-clock-es,
+#battery, #pulseaudio, #network, #backlight,
+#tray, #window,
+#custom-launcher, #custom-wlogout,
+#custom-notifications {
+background: rgba(25,25,35,0.75);
+color: @color7;
+padding: 4px 10px;
+margin: 3px 4px;
+border-radius: 12px;
+box-shadow:
+inset 0 0 3px rgba(255,255,255,0.08),
+0 2px 5px rgba(0,0,0,0.6),
+0 0 8px rgba(0,0,0,0.3);
+background-clip: padding-box;
+}
+
+/* ===== GRUPO APARIENCIA (drawer) ===== */
+#group-appearance {
+background: rgba(25,25,35,0.75);
+color: @color7;
+margin: 3px 4px;
+padding: 0;                         /* evitar bugs del drawer con padding */
+border-radius: 12px;
+box-shadow:
+inset 0 0 3px rgba(255,255,255,0.08),
+0 2px 5px rgba(0,0,0,0.6),
+0 0 8px rgba(0,0,0,0.3);
+}
+/* hijos dentro del grupo */
+#group-appearance #custom-appearance,
+#group-appearance #custom-wallpaper,
+#group-appearance #custom-theme {
+background: transparent;            /* usa el fondo del grupo */
+margin: 0;
+padding: 4px 10px;
+border-radius: 0;                   /* las esquinas las da el grupo */
+}
+/* separador entre botones visibles */
+#group-appearance #custom-wallpaper,
+#group-appearance #custom-theme {
+border-left: 1px solid rgba(255,255,255,0.08);
+}
+/* redondeo exterior del primero/último */
+#group-appearance :first-child {      /* el “líder” */
+border-top-left-radius: 12px;
+border-bottom-left-radius: 12px;
+border-left: none;                  /* sin separador a la izquierda */
+}
+#group-appearance :last-child {
+border-top-right-radius: 12px;
+border-bottom-right-radius: 12px;
+}
+
+/* Drawer: los hijos ocultos llevan por defecto la clase .hidden */
+#group-appearance .hidden {
+padding: 0;
+margin: 0;
+opacity: 0.0;
+}
+
+/* Hover visual */
+#group-appearance :not(.hidden):hover {
+background: rgba(255,255,255,0.06);
+}
+
+/* ===== WORKSPACES ===== */
+#workspaces { background: transparent; }
+
+#workspaces button {
+padding: 3px 8px;
+margin: 0 3px;
+border-radius: 10px;
+background: rgba(255,255,255,0.06);
+color: @color5;
+transition: all 0.2s ease-in-out;
+box-shadow: inset 0 0 2px rgba(255,255,255,0.05);
+}
+#workspaces button.active,
+#workspaces button.focused {
+background: @color6;
+color: @color0;
+box-shadow: 0 0 6px @color6, 0 0 12px @color6;
+}
+#workspaces button:hover {
+background: @color7;
+color: @color0;
+}
+
+/* ===== TRAY ===== */
+#tray { margin-right: 8px; }
+
+/* ===== TÍTULO DE VENTANA ===== */
+#window {
+margin-left: 20px;
+margin-right: 20px;
+color: @color6;
+font-weight: 600;
+}
+
+/* ===== LAUNCHER / WLOGOUT ===== */
+#custom-launcher {
+background: @color4;
+color: @color0;
+border-radius: 12px;
+margin-left: 15px;
+box-shadow: 0 0 6px @color4, 0 0 12px @color4;
+}
+#custom-wlogout {
+background: @color1;
+color: @color6;
+border-radius: 12px;
+margin-right: 15px;
+box-shadow: 0 0 6px @color1, 0 0 12px @color1;
+}
+
+/* Failsafe: puntas si cambian de lugar */
+.modules-left > widget:first-child > * {
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+}
+.modules-right > widget:last-child > * {
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+}
+
+/* ===== NOTIFICACIONES ===== */
+#custom-notifications { font-size: 9px; }
