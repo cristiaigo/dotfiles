@@ -1,6 +1,6 @@
-@define-color wb_bg #0a0b10;
-@define-color wb_fg #dfe1e5;
-@define-color wb_accent #ABB2C8;
-@define-color wb_warn #7A84A4;
-@define-color wb_crit #596791;
-@define-color wb_secondary #BCC2D1;
+@define-color wb_bg #1f1e20;
+@define-color wb_fg #d3d1cb;
+@define-color wb_accent #A398A4;
+@define-color wb_warn #AAA59C;
+@define-color wb_crit #999091;
+@define-color wb_secondary #B9B4A9;

@@ -22,8 +22,11 @@ window#waybar {
 
 /* ===== MÓDULOS ===== */
 #workspaces,
-#custom-clock-es,
-#controls, #appearance, #conect, #custom-launcher, #custom-wlogout {
+#clock, #custom-clock-es,
+#battery, #pulseaudio, #network, #backlight,
+#tray, #window,
+#custom-launcher, #custom-wlogout,
+#custom-notifications {
 background: rgba(25,25,35,0.75);
 color: @color7;
 padding: 4px 10px;
@@ -35,27 +38,7 @@ inset 0 0 3px rgba(255,255,255,0.08),
 0 0 8px rgba(0,0,0,0.3);
 background-clip: padding-box;
 }
-/* más aire entre audio, mic, brillo y batería dentro del grupo */
-#controls #pulseaudio,
-#controls #pulseaudio-microphone,
-#controls #backlight,
-#controls #battery {
-margin: 0 6px;                 /* separa los módulos */
-}
 
-/* (opcional) separador visual fino entre ítems */
-#controls #pulseaudio-microphone,
-#controls #backlight,
-#controls #battery {
-border-left: 1px solid rgba(255,255,255,0.10);
-padding-left: 8px;             /* compensa el borde */
-}
-
-#conect #network,
-#conect #tray
-#conect #custom-notifications {
-margin: 0 6px;
-}
 /* ===== GRUPO APARIENCIA (drawer) ===== */
 #group-appearance {
 background: rgba(25,25,35,0.75);
